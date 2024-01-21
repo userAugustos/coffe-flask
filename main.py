@@ -78,11 +78,12 @@ class Users(Resource):
       
       user_data = data[data['userId'] == args['userId']]
       
-      user_data['locations'] = user_data['locations'].values[0].append(args['location'])
+      # this is a panda thing to update the csv safely
+      user_data.loc['locations'] = user_data.loc[:, 'locations'].values[0].append(args['location'])
       
       data.to_csv('users.csv', index=False)
       
-      return { 'data': data.to_dict() }, 200  
+      return { 'data': data.to_dict() }, 200
     
     return { 'message': f"{args['userId']} user not found" }, 404
 
