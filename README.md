@@ -4,8 +4,6 @@ Coffee-flask is an API project designed to connect individuals with the nearest 
 
 ## Features
 
-- **User Management:** Maintain a database of users with relevant information.
-- **Location Tracking:** Keep track of coffee shop locations in the database.
 - **Graph-Based Searching:** Utilize an efficient graph-based algorithm for effective user-to-coffee shop linkage.
 - **Python, Flask, Flask-RESTful, and Pandas:** The project is developed using Python, Flask, Flask-RESTful, and Pandas libraries.
 
