@@ -105,6 +105,8 @@ class Users(Resource):
         print(f"find: {data}")
         return { 'data': data.to_dict() }, 200
     
+    return { 'message': 'user not found' }, 404
+    
 
 class Locations(Resource):
   pass
