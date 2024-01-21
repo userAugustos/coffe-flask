@@ -12,7 +12,7 @@ Coffee-flask is an API project designed to connect individuals with the nearest 
 ## Installation
 
 1. **Clone the Repository:**
-   ```bash
+  ```bash
    git clone https://github.com/your-username/Coffee-flask.git
    cd Coffee-flask
   ```
@@ -20,7 +20,7 @@ Coffee-flask is an API project designed to connect individuals with the nearest 
 2. **Create a Virtual Environment:**
 
   ```bash
-  python -m venv venv
+    python -m venv venv
   ```
 3. **Activate the Virtual Environment:**
   - On Windows:
@@ -34,12 +34,12 @@ Coffee-flask is an API project designed to connect individuals with the nearest 
 4. **Install Dependencies:**
 
   ```bash
-  pip install -r requirements.txt
+    pip install -r requirements.txt
   ```
 
 ## Usage
 
 1. **Run the Application:**
   ```bash
-  python app.py
+    python app.py
   ```
