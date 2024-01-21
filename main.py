@@ -101,12 +101,13 @@ class Users(Resource):
         data = data.drop(index)
         # we transform the csv into a python dataFrame, then we remove the row at that index, after that, we re_write the csv
         data.to_csv('data/users.csv', index=False)
-        # 
         print(f"find: {data}")
         return { 'data': data.to_dict() }, 200
     
     return { 'message': 'user not found' }, 404
     
+# Each location is given a unique ID — 
+# when a user bookmarks a location, that unique ID is added to their locations list with PUT /users
 
 class Locations(Resource):
   pass
