@@ -9,7 +9,7 @@ api = Api(app)
 class Users(Resource):
   def get(self):
     print(self)
-    data = pd.read_csv('data/data/users.csv')
+    data = pd.read_csv('data/users.csv')
     data = data.to_dict()
     return { 'data': data }, 200
   

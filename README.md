@@ -11,7 +11,7 @@ Coffee-flask is an API project designed to connect individuals with the nearest 
 
 1. **Clone the Repository:**
   ```bash
-   git clone https://github.com/your-username/Coffee-flask.git
+   git clone https://github.com/userAugustos/coffe-flask.git
    cd Coffee-flask
   ```
 
