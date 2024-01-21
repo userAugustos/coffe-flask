@@ -30,16 +30,16 @@ class Users(Resource):
     if args['userId'] in list(data['userId']):
       return {
         'message': f"{args['userId']} already exists."
-      }
+      }, 401
       
     new_data = pd.DataFrame({
     'userId': args['userId'],
     'name': args['name'],
     'city': args['city'],
     'locations': [[]]
-  })
+    })
     
-    # app the provided values
+    # apply the provided values
     data = data._append(new_data, ignore_index=True)
     
     # save the CSV
@@ -68,7 +68,7 @@ class Users(Resource):
       )
       print(type(data['locations']))
       
-      # search in our csv if user passed already has that location 
+      # search in our csv if user passed already has that location
       for index, item in enumerate(data['userId']):
         if item == args['userId']:
           print(f"find user {item}, in {index}")
@@ -86,6 +86,25 @@ class Users(Resource):
       return { 'data': data.to_dict() }, 200
     
     return { 'message': f"{args['userId']} user not found" }, 404
+  
+  def delete(self):
+    parser = reqparse.RequestParser()
+    
+    parser.add_argument('userId', required=True)
+    
+    args = parser.parse_args()
+    
+    data = pd.read_csv('users.csv')
+    
+    for index, item in enumerate(data['userId']):
+      if data['userId'][index] == args['userId']:
+        data = data.drop(index)
+        # we transform the csv into a python dataFrame, then we remove the row at that index, after that, we re_write the csv
+        data.to_csv('users.csv', index=False)
+        # 
+        print(f"find: {data}")
+        return { 'data': data.to_dict() }, 200
+    
 
 class Locations(Resource):
   pass
