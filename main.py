@@ -110,7 +110,42 @@ class Users(Resource):
 # when a user bookmarks a location, that unique ID is added to their locations list with PUT /users
 
 class Locations(Resource):
-  pass
+  def get(self):
+    data = pd.read_csv('data/locations.csv')
+    data = data.to_dict()
+    return { 'data': data }, 200
+  
+  def post(self):
+    parser = reqparse.RequestParser()
+    
+    parser.add_argument('location', required=True)
+    
+    args = parser.parse_args()
+    
+    data = pd.read_csv('data/locations.csv')
+    
+    if args['location'] in list(data['name']):
+      return {
+        'message': f"{args['location']} already exists."
+      }, 401
+      
+    last_index = len(data['locationId'])
+    
+    print(last_index + 1)
+    
+    # so in this dataFrame we made something cool, that is define, where in the csv this data frame enters, so as we can see by the locatin id, we have X itens, oour new item will be len + 1, and the he will enter by the end of len
+    new_data = pd.DataFrame({
+      'locationId': last_index + 1,
+      'name': args['location'],
+      'rating': 0
+    }, index=[last_index])
+    
+    data = data._append(new_data, ignore_index=True)
+    
+    data.to_csv('data/locations.csv', index=False)
+    
+    return { 'data': data.to_dict() }, 200
+    
 
 api.add_resource(Users, '/users')
 api.add_resource(Locations, '/locations')
